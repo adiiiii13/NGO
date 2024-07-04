@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help.com</title>
+    <script
+      src="https://kit.fontawesome.com/8fc9f5f48d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4caf50;
+        padding: 15px 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar .logo {
+        font-size: 26px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar ul li {
+        position: relative;
+        margin-left: 25px;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        display: block;
+        transition: background-color 0.3s, transform 0.3s;
+        border-radius: 4px;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #3e8e41;
+        transform: scale(1.1);
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgb(0, 0, 0);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        animation: slideIn 0.3s ease-out;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Slideshow Container */
+      .slideshow-container {
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+
+      .slideshow-container img {
+        width: 100%;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      /* About Section */
+      .about-section {
+        background-color: #fff;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .about-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .about-container h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .about-container p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .btn:hover {
+        background-color: #3e8e41;
+      }
+
+      /* Main Content Section */
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 1200px;
+        margin: auto;
+        padding: 50px 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        position: relative; /* Ensure relative positioning for absolute elements */
+      }
+
+      @media (min-width: 768px) {
+        .main-content {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .kid-section,
+        .donate-quote-section {
+          flex: 1;
+        }
+
+        .kid-section {
+          padding-right: 20px;
+        }
+
+        .donate-quote-section {
+          padding-left: 20px;
+        }
+      }
+
+      .kid-container {
+        max-width: 100%;
+        margin: auto;
+        text-align: center;
+      }
+
+      .kid-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .quote {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .donate-btn {
+        display: inline-block;
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .donate-btn:hover {
+        background-color: #3e8e41;
+      }
+
+      .feedback-section {
+        background-color: #f9f9f9;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .feedback-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .feedback-container h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .feedback-form {
+        max-width: 600px;
+        margin: auto;
+        text-align: left;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .feedback-form input,
+      .feedback-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .feedback-form button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .feedback-form button:hover {
+        background-color: #3e8e41;
+      }
+
+      .circle-photo {
+        margin-top: 50px;
+      }
+
+      .circle-photo img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #4caf50;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .contact-section {
+        background-color: #fff;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .contact-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .contact-container h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .contact-container p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      .contact-info {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin-top: 20px;
+      }
+
+      .contact-info li {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .contact-info li:first-child {
+        margin-top: 10px;
+      }
+
+      .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 30px 20px;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .footer-left {
+        flex: 1;
+        text-align: left;
+      }
+
+      .footer-left h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .footer-left p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+
+      .footer-links li {
+        display: inline;
+        margin-right: 10px;
+      }
+
+      .footer-links li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links li a:hover {
+        color: #4caf50;
+      }
+
+      .footer-right {
+        flex: 1;
+        text-align: right;
+      }
+
+      .footer-right p {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .social-icons {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .social-icons li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .social-icons li a {
+        color: #fff;
+        font-size: 18px;
+        transition: color 0.3s;
+      }
+
+      .social-icons li a:hover {
+        color: #4caf50;
+      }
+
+      .video-section {
+        position: relative;
+        margin-top: 20px;
+        overflow: hidden;
+        border-radius: 8px;
+        max-width: 900px; /* Increased max-width */
+        margin: 20px auto;
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        padding-top: 62.5%; /* Increased padding-top (16:9 aspect ratio) */
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+      @media (min-width: 768px) {
+        .main-content {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .kid-section,
+        .video-section,
+        .donate-quote-section {
+          flex: 1;
+        }
+
+        .kid-section {
+          padding-right: 20px;
+        }
+
+        .donate-quote-section {
+          padding-left: 20px;
+        }
+      }
+      /* Existing CSS styles */
+      .title-section {
+        background-color: #f4f4f4;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .title-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .title-container h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .title-container p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .title-container h2 {
+          font-size: 28px;
+        }
+      }
+
+      .slide {
+        position: relative;
+        display: inline-block;
+      }
+
+      .slide .slide-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        opacity: 0;
+        transition: opacity ;
+      }
+
+      .slide:hover .slide-text {
+        opacity: 1;
+      }
+
+      .slide .slide-text h1 {
+        font-size: 36px;
+        color: #000000;
+      }
+
+      .slide .slide-text h2 {
+        font-size: 24px;
+        color: #000000;
+      }
+
+      .mySlides {
+        width: 100%;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">help.com</div>
+      <ul>
+        <li><a href="#" onclick="scrollToSection('home')">Home</a></li>
+        <li><a href="#" onclick="scrollToSection('about')">About</a></li>
+        <li><a href="#" onclick="scrollToSection('donate')">Donate</a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">More</a>
+          <div class="dropdown-content">
+            <a href="#" onclick="scrollToSection('feedback')">Feedback</a>
+            <a href="#" onclick="scrollToSection('contact')">Contact</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div id="home" class="slideshow-container">
+      <div class="slide">
+        <div class="slide-text">
+          <h1>Welcome to the World of Help.com</h1>
+          <h2>Join Us and Be a Part of Something Wonderful</h2>
+        </div>
+        <img class="mySlides" src="/Try2/demo1.jpg" alt="Slide 1" />
+      </div>
+      <div class="slide">
+        <div class="slide-text">
+          <h1>Welcome to the World of Help.com</h1>
+          <h2>Join Us and Be a Part of Something Wonderful</h2>
+        </div>
+        <img class="mySlides" src="/Try2/demo2.jpg" alt="Slide 2" />
+      </div>
+      <div class="slide">
+        <div class="slide-text">
+          <h1>Welcome to the World of Help.com</h1>
+          <h2>Join Us and Be a Part of Something Wonderful</h2>
+        </div>
+        <img class="mySlides" src="/Try2/demo3.jpg" alt="Slide 3" />
+      </div>
+
+      <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {
+            slideIndex = 1;
+          }
+          slides[slideIndex - 1].style.display = "block";
+          setTimeout(carousel, 3000); // Change image every 3 seconds
+        }
+      </script>
+    </div>
+
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <h2>About Us</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          scelerisque nisi vel condimentum fermentum. Mauris euismod felis a
+          ante tincidunt, sit amet posuere arcu vehicula. Vivamus lacinia quam
+          nec dui convallis, et maximus nulla aliquam.
+        </p>
+        <p>
+          Pellentesque habitant morbi tristique senectus et netus et malesuada
+          fames ac turpis egestas. Duis vel varius mauris. Proin suscipit enim
+          sit amet nibh tincidunt ultricies. Nunc id mi at nisl tincidunt
+          tincidunt.
+        </p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+    </section>
+
+    <section id="donate" class="main-content">
+      <div class="kid-section">
+        <div class="kid-container">
+          <img src="/Try2/Children of Hyderabad.jpg" alt="Portrait of a Kid" />
+        </div>
+      </div>
+
+      <div class="donate-quote-section">
+        <div class="quote">
+          <p>"Your donation can change a child's life forever."</p>
+        </div>
+        <a href="#" class="btn donate-btn">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Title and Description Section -->
+    <section class="title-section">
+      <div class="title-container">
+        <h2>Empowering Lives Through Education</h2>
+        <p>Get a glimpse of our work in transforming children's futures.</p>
+        <p>
+          "Education is the most powerful weapon which you can use to change the
+          world." - Nelson Mandela
+        </p>
+      </div>
+    </section>
+
+    <!-- Add the Video Section here -->
+    <div class="video-section">
+      <div class="video-container">
+        <iframe
+          width="400"
+          height="225"
+          src="https://www.youtube.com/embed/F2YpXC1itEE?autoplay=1&loop=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <section id="feedback" class="feedback-section">
+      <div class="feedback-container">
+        <h2>Give Us Your Feedback</h2>
+        <div class="feedback-form">
+          <form action="#">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea placeholder="Your Feedback" required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="circle-photo">
+        <img src="/Try2/feedback-person.jpg" alt="Feedback Person" />
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <h2>Contact Us</h2>
+        <p>
+          If you have any questions or need further assistance, feel free to
+          reach out to us.
+        </p>
+        <ul class="contact-info">
+          <li>Email: contact@help.com</li>
+          <li>Phone: +1 123 456 7890</li>
+          <li>Address: 123 Help Street, Cityville, State, Country</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h3>Help.com</h3>
+          <p>A platform dedicated to helping those in need.</p>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <p>&copy; 2024 Help.com. All Rights Reserved.</p>
+          <ul class="social-icons">
+            <li>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling function
+      function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>
